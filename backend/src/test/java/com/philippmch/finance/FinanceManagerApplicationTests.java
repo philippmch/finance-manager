@@ -1,4 +1,4 @@
-package com.example.finance;
+package com.philippmch.finance;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
