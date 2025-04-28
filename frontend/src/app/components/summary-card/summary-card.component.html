@@ -1,0 +1,4 @@
+<div class="summary-card" [ngClass]="{'positive': isPositive, 'negative': !isPositive}">
+  <h3 class="card-title">{{ title }}</h3>
+  <p class="card-amount">{{ amount | currency:'EUR' }}</p>
+</div>

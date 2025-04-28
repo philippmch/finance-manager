@@ -1,0 +1,36 @@
+.summary-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  
+  &.positive {
+    border-left: 4px solid #2ecc71;
+  }
+  
+  &.negative {
+    border-left: 4px solid #e74c3c;
+  }
+  
+  .card-title {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #666;
+    font-weight: 500;
+  }
+  
+  .card-amount {
+    font-size: 28px;
+    font-weight: 500;
+    margin: 0;
+    
+    .positive & {
+      color: #2ecc71;
+    }
+    
+    .negative & {
+      color: #e74c3c;
+    }
+  }
+}

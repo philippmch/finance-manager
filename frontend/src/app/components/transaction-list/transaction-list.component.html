@@ -1,0 +1,74 @@
+<div class="transaction-list-container">
+  <div class="header">
+    <h1>Transactions</h1>
+    <a routerLink="/add-transaction" class="add-button">+ Add Transaction</a>
+  </div>
+  
+  <div class="filters">
+    <div class="search-box">
+      <input 
+        type="text" 
+        [(ngModel)]="searchTerm" 
+        (input)="onFilterChange()" 
+        placeholder="Search transactions...">
+    </div>
+    
+    <div class="filter-options">
+      <select [(ngModel)]="filterType" (change)="onFilterChange()">
+        <option value="all">All Transactions</option>
+        <option value="INCOME">Income Only</option>
+        <option value="EXPENSE">Expenses Only</option>
+      </select>
+    </div>
+  </div>
+  
+  <div *ngIf="isLoading" class="loading">Loading transactions...</div>
+  
+  <div *ngIf="error" class="error-message">{{ error }}</div>
+  
+  <div *ngIf="!isLoading && !error && filteredTransactions.length === 0" class="empty-state">
+    No transactions found. <a routerLink="/add-transaction">Add your first transaction</a>
+  </div>
+  
+  <div *ngIf="filteredTransactions.length > 0" class="transaction-table-container">
+    <table class="transaction-table">
+      <thead>
+        <tr>
+          <th (click)="onSortChange('date')" class="sortable">
+            Date {{ getSortIndicator('date') }}
+          </th>
+          <th (click)="onSortChange('description')" class="sortable">
+            Description {{ getSortIndicator('description') }}
+          </th>
+          <th>Category</th>
+          <th>Type</th>
+          <th (click)="onSortChange('amount')" class="sortable text-right">
+            Amount {{ getSortIndicator('amount') }}
+          </th>
+          <th class="actions-column">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of filteredTransactions">
+          <td>{{ transaction.date | date:'medium' }}</td>
+          <td>{{ transaction.description }}</td>
+          <td>{{ transaction.category }}</td>
+          <td>
+            <span class="transaction-type" [ngClass]="transaction.type.toLowerCase()">
+              {{ transaction.type }}
+            </span>
+          </td>
+          <td class="text-right" [ngClass]="{'income-amount': transaction.type === 'INCOME', 'expense-amount': transaction.type === 'EXPENSE'}">
+            {{ transaction.amount | currency:'EUR' }}
+          </td>
+          <td class="actions-column">
+            <div class="action-buttons">
+              <a [routerLink]="['/edit-transaction', transaction.id]" class="edit-button">Edit</a>
+              <button (click)="deleteTransaction(transaction.id)" class="delete-button">Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
