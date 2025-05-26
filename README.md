@@ -1,6 +1,6 @@
 # Personal Finance Manager
 
-A simple, clean app to keep track of your money without the fuss. Built with Angular and Spring Boot.
+A simple, clean app to keep track of your money.
 
 ## What it does
 
@@ -30,7 +30,3 @@ A simple, clean app to keep track of your money without the fuss. Built with Ang
 
 - **Frontend**: Angular with TypeScript, SCSS for styling
 - **Backend**: Spring Boot, JPA, H2 database
-
-## Need help?
-
-Check the code comments or reach out if you have questions. Happy budgeting!
